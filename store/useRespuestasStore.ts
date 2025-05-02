@@ -17,10 +17,10 @@ export const useRespuestasStore=create<RespState>()((set, get) => ({
     },
 
     delRespuesta: (id) => {
-        set((state) => ({ respuestas: state.respuestas.filter(r => r.seleccion!=id) }))
+        set((state) => ({ respuestas: state.respuestas.filter(r => r.seleccion!==id) }))
     },
 
     resetRespuesta: (id) => {
-        set((state) => ({ respuestas: state.respuestas.filter(r => r.pregunta!=id) }))
+        set((state) => ({ respuestas: state.respuestas.filter(r => r.pregunta!==id) }))
     }
 }))

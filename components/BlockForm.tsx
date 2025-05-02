@@ -60,7 +60,7 @@ const BlockForm=({ item, index }: Props) => {
         {item.option_3!.length>10&&<TouchableOpacity onPress={() => handleRespuesta(item.option_3_value!, 0)} style={[styles.button, isActive===item.option_3_value? styles.select:null]} >
           <ThemedText style={{ fontSize: 13, }}>{item.option_3}</ThemedText>
         </TouchableOpacity>}
-        {item.option_4!.length>10&&<TouchableOpacity onPress={() => handleRespuesta(item.option_4_value!, 0)} style={[styles.button, isActive==item.option_4_value? styles.select:null]} >
+        {item.option_4!.length>10&&<TouchableOpacity onPress={() => handleRespuesta(item.option_4_value!, 0)} style={[styles.button, isActive===item.option_4_value? styles.select:null]} >
           <ThemedText style={{ fontSize: 13, }}>{item.option_4}</ThemedText>
         </TouchableOpacity>}
       </View>
