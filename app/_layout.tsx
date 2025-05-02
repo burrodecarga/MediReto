@@ -6,15 +6,15 @@ import { StatusBar } from 'expo-status-bar'
 import { useEffect } from 'react'
 import 'react-native-reanimated'
 
-import { Gesture, GestureHandlerRootView } from 'react-native-gesture-handler'
 import { useColorScheme } from '@/hooks/useColorScheme.web'
+import { GestureHandlerRootView } from 'react-native-gesture-handler'
 
 // Prevent the splash screen from auto-hiding before asset loading is complete.
 SplashScreen.preventAutoHideAsync()
 
 export default function RootLayout() {
-  const colorScheme = useColorScheme()
-  const [loaded] = useFonts({
+  const colorScheme=useColorScheme()
+  const [loaded]=useFonts({
     SpaceMono: require('../assets/fonts/SpaceMono-Regular.ttf'),
     KanitRegular: require('../assets/fonts/Kanit-Regular.ttf'),
     KanitBold: require('../assets/fonts/Kanit-Bold.ttf'),
@@ -33,7 +33,7 @@ export default function RootLayout() {
 
   return (
     <GestureHandlerRootView>
-      <ThemeProvider value={colorScheme === 'dark' ? DarkTheme : DefaultTheme}>
+      <ThemeProvider value={colorScheme==='dark'? DarkTheme:DefaultTheme}>
         <Stack
           screenOptions={{ headerShown: false }}
         />

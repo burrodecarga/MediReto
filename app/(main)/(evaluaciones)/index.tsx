@@ -1,12 +1,9 @@
-import { FlatList, StyleSheet, Text, View } from 'react-native'
-import React, { useEffect, useState } from 'react'
-import { router, Stack, useLocalSearchParams } from 'expo-router'
-import { getExamenAPresentar } from '@/actions/leccion-actions'
-import { ThemedText } from '@/components/ThemedText'
 import Indicador from '@/components/Indicador'
-import { Examen } from '@/interfaces/interfaces'
-import { ThemedView } from '@/components/ThemedView'
 import ThemeButton from '@/components/ThemeButton'
+import { ThemedView } from '@/components/ThemedView'
+import { router, useLocalSearchParams } from 'expo-router'
+import React from 'react'
+import { FlatList, Text, View } from 'react-native'
 
 const EvaluacionesScreen=() => {
     const params=useLocalSearchParams()
@@ -56,6 +53,8 @@ const EvaluacionesScreen=() => {
                 <View style={{ height: 20 }} />
                 <ThemeButton onPress={() => router.push({ pathname: "/(main)/(evaluacion)/examen_teacher_asignatura", params: { asignatura_id, teacher_id } })}>Presentar Examen</ThemeButton>
                 <View style={{ height: 10 }} />
+                <ThemeButton onPress={() => router.push({ pathname: "/(main)/(evaluacion)/examen_teacher_formulario", params: { asignatura_id, teacher_id } })}>Presentar Examen Formulario</ThemeButton>
+                <View style={{ height: 10 }} />
                 <ThemeButton onPress={() => router.back()}>Regresar</ThemeButton>
             </ThemedView>
             <FlatList
@@ -68,4 +67,3 @@ const EvaluacionesScreen=() => {
 
 export default EvaluacionesScreen
 
-const styles=StyleSheet.create({})
