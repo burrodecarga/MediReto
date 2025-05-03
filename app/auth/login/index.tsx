@@ -1,36 +1,36 @@
-import { Alert, KeyboardAvoidingView, StyleSheet, useWindowDimensions, View } from 'react-native'
-import React, { useState } from 'react'
-import { router } from 'expo-router'
-import { ScrollView } from 'react-native-gesture-handler'
-import { ThemedText } from '@/components/ThemedText'
-import ThemeTextInput from '@/components/ThemeTextInput'
 import ThemeButton from '@/components/ThemeButton'
+import { ThemedText } from '@/components/ThemedText'
+import { ThemedView } from '@/components/ThemedView'
 import ThemeLink from '@/components/ThemeLink'
+import ThemeTextInput from '@/components/ThemeTextInput'
 import { useAuthStore } from '@/store/useAuthStore'
-import RedIp from '@/components/RedIp'
+import { router } from 'expo-router'
+import React, { useState } from 'react'
+import { Alert, KeyboardAvoidingView, StyleSheet, useWindowDimensions, View } from 'react-native'
+import { ScrollView } from 'react-native-gesture-handler'
 
-const LoginScreen = () => {
-    const { height } = useWindowDimensions()
-    const [isPosting, setIsPosting] = useState(false)
-    const [form, setForm] = useState({
+const LoginScreen=() => {
+    const { height }=useWindowDimensions()
+    const [isPosting, setIsPosting]=useState(false)
+    const [form, setForm]=useState({
         email: 'es@gmail.com',
         password: 'password'
     })
 
-    const { login } = useAuthStore()
+    const { login }=useAuthStore()
 
-    const onLogin = async () => {
-        const { email, password } = form
+    const onLogin=async () => {
+        const { email, password }=form
 
         //console.log({ email, password })
 
-        if (email.length === 0 || password.length === 0) {
+        if (email.length===0||password.length===0) {
             return
         }
 
         setIsPosting(true)
-        const wasSuccessful = await login(email, password)
-        console.log('resultado:' + wasSuccessful)
+        const wasSuccessful=await login(email, password)
+        console.log('resultado:'+wasSuccessful)
         setIsPosting(false)
 
         if (wasSuccessful) {
@@ -46,8 +46,8 @@ const LoginScreen = () => {
             behavior='padding'
             style={{ flex: 1 }}>
             <ScrollView style={{ paddingHorizontal: 40 }}>
-                <View style={{ paddingTop: height * 0.35 }}>
-                    <RedIp />
+                <View style={{ paddingTop: height*0.35 }}>
+
                     <ThemedText type='title'>Ingresar</ThemedText>
                     <ThemedText style={{ color: 'gray' }}>Por favor ingrese sus datos para continuar</ThemedText>
                 </View>
@@ -70,7 +70,7 @@ const LoginScreen = () => {
                     onChangeText={(value) => setForm({ ...form, password: value })}
                 />
                 <View style={{ marginTop: 10 }} />
-                <ThemeButton icon='arrow-forward-outline' onPress={onLogin} style={{ backgroundColor: isPosting ? 'red' : 'blue' }} disabled={isPosting}>Ingresar</ThemeButton>
+                <ThemeButton icon='arrow-forward-outline' onPress={onLogin} style={{ backgroundColor: isPosting? 'red':'blue' }} disabled={isPosting}>Ingresar</ThemeButton>
 
                 <View style={{ marginTop: 20 }}>
                     <View style={{ flexDirection: 'row', alignItems: 'center', justifyContent: 'center' }}>
@@ -80,6 +80,11 @@ const LoginScreen = () => {
                         </ThemeLink>
                     </View>
                 </View>
+                <ThemedView style={{ marginBottom: 30 }}>
+
+                    <ThemeButton onPress={() => router.push('/auth/config')}>configurar</ThemeButton>
+
+                </ThemedView>
             </ScrollView>
         </KeyboardAvoidingView>
     )
@@ -88,4 +93,4 @@ const LoginScreen = () => {
 export default LoginScreen
 
 
-const styles = StyleSheet.create({})
+const styles=StyleSheet.create({})
