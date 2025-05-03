@@ -1,18 +1,17 @@
-import { StyleSheet, Text, View } from 'react-native'
-import React from 'react'
 import { Leccion } from '@/interfaces/interfaces'
-import { ThemedView } from './ThemedView'
+import React from 'react'
 import { ThemedText } from './ThemedText'
-import VideoCard from './VideoCard'
+import { ThemedView } from './ThemedView'
+import YoutubeCard from './YoutubeCard'
 
-type Props = {
+type Props={
     item: Leccion
 }
 
-const LeccionesCard = ({ item }: Props) => {
+const LeccionesCard=({ item }: Props) => {
     return (
         <ThemedView style={{ marginHorizontal: 10, padding: 10 }}>
-            <VideoCard />
+            <YoutubeCard />
             <ThemedText type='subtitle'>{item.name}</ThemedText>
             <ThemedText>{item.description}</ThemedText>
         </ThemedView>
@@ -21,4 +20,3 @@ const LeccionesCard = ({ item }: Props) => {
 
 export default LeccionesCard
 
-const styles = StyleSheet.create({})

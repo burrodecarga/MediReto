@@ -1,13 +1,12 @@
-import { FlatList, StyleSheet, Text, View } from 'react-native'
-import React, { useEffect, useState } from 'react'
-import { router, useLocalSearchParams } from 'expo-router'
 import { getAsignaturaDeEstudiantePorAula, getStudentAsignatura } from '@/actions/aula-actions'
+import AsignaturaCard from '@/components/AsignaturaCard'
 import Indicador from '@/components/Indicador'
-import { Asignatura, Aula } from '@/interfaces/interfaces'
 import { ThemedText } from '@/components/ThemedText'
 import { ThemedView } from '@/components/ThemedView'
-import AsignaturaCard from '@/components/AsignaturaCard'
-import { AulaType } from '@/interfaces/types/types'
+import { Asignatura, Aula } from '@/interfaces/interfaces'
+import { router, useLocalSearchParams } from 'expo-router'
+import React, { useEffect, useState } from 'react'
+import { FlatList, StyleSheet } from 'react-native'
 
 const AsignaturasScreen=() => {
     const [loading, setLoading]=useState(false)
@@ -50,7 +49,7 @@ const AsignaturasScreen=() => {
 
     const verLeccion=(id: string) => {
         //console.log(id)
-        router.push({ pathname: "/(main)/(aulas)/(asignaturas)/(lecciones)/lecciones", params: { id } })
+        router.push({ pathname: "/(main)/(asignaturas)/(lecciones)/lecciones", params: { id } })
     }
     return (
         <ThemedView>

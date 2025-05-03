@@ -1,6 +1,6 @@
 import { Proto, Resp } from "@/interfaces/interfaces"
 import { useRespuestasStore } from "@/store/useRespuestasStore"
-import React, { useState } from "react"
+import React, { useEffect, useState } from "react"
 import { Dimensions, StyleSheet, TouchableOpacity, View } from "react-native"
 import { ThemedText } from "./ThemedText"
 
@@ -40,10 +40,13 @@ const BlockForm=({ item, index }: Props) => {
     }
   }
 
+  useEffect(() => {
+    respuestas.map(r => r.respuesta===item.option_id&&setIsActive(item.option_id))
+  })
   console.log(respuestas, respuestas.length, isActive)
 
   return (
-    <View style={{ padding: 10, marginHorizontal: 10, }}>
+    <View style={styles.container}>
       <ThemedText style={{ fontWeight: '700', fontSize: 15, backgroundColor: '#dcdcdc', height: 'auto', paddingHorizontal: 6, paddingVertical: 10, textAlign: 'justify', }}>
         {(index+1)+'.-'}{item.question}
       </ThemedText>
@@ -64,7 +67,7 @@ const BlockForm=({ item, index }: Props) => {
           <ThemedText style={{ fontSize: 13, }}>{item.option_4}</ThemedText>
         </TouchableOpacity>}
       </View>
-      <TouchableOpacity onPress={() => handleRespuesta(item.question_id, 1)}><ThemedText>Reset</ThemedText></TouchableOpacity>
+      <TouchableOpacity style={styles.reset} onPress={() => handleRespuesta(item.question_id, 1)}><ThemedText style={{ textAlign: 'center' }}>Reset</ThemedText></TouchableOpacity>
     </View>
   )
 }
@@ -72,21 +75,38 @@ const BlockForm=({ item, index }: Props) => {
 export default BlockForm
 
 const styles=StyleSheet.create({
+  container: {
+    padding: 10,
+    marginHorizontal: 10,
+    borderColor: '#a9a9a9', borderWidth: 1, marginBottom: 10
+  },
+
   button: {
     borderRadius: 2,
     marginVertical: 10,
     borderWidth: 1,
-    borderColor: "aquamarine",
+    borderColor: "grey",
     paddingHorizontal: 0,
     paddingVertical: 5,
     marginBottom: 10,
-    backgroundColor: "aliceblue",
+    backgroundColor: "white",
     height: 'auto',
     alignItems: 'center',
     justifyContent: 'center'
   },
   select: {
     backgroundColor: 'aqua'
+  },
+  reset: {
+    marginHorizontal: 10,
+    paddingHorizontal: 10,
+    paddingVertical: 5,
+    backgroundColor: '#dcdcdc',
+    marginBottom: 18,
+    borderRadius: 9
+  },
+  textReset: {
+    backgroundColor: '#dcdcdc'
   }
 
 

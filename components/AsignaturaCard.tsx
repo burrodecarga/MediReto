@@ -1,18 +1,17 @@
-import { ScrollView, StyleSheet, Text, View } from 'react-native'
-import React from 'react'
-import { Asignatura } from '@/interfaces/interfaces'
-import { ThemedView } from './ThemedView'
-import ThemeLink from './ThemeLink'
-import ThemeButton from './ThemeButton'
 import { useThemeColor } from '@/hooks/useThemeColor'
+import { Asignatura } from '@/interfaces/interfaces'
+import React from 'react'
+import { ScrollView, Text } from 'react-native'
+import ThemeButton from './ThemeButton'
+import { ThemedView } from './ThemedView'
 
 interface Props {
     item: Asignatura,
     verLeccion: (id: string) => void
 
 }
-const AsignaturaCard = ({ item, verLeccion }: Props) => {
-    const primary = useThemeColor({}, 'primary')
+const AsignaturaCard=({ item, verLeccion }: Props) => {
+    const primary=useThemeColor({}, 'primary')
 
     return (
         <ScrollView>
@@ -21,7 +20,7 @@ const AsignaturaCard = ({ item, verLeccion }: Props) => {
                 <ThemedView>
                     <Text>{item.description}</Text>
                 </ThemedView>
-                <ThemeButton onPress={() => verLeccion(item.id.toString())} style={{ backgroundColor: primary, borderColor: primary, borderWidth: 1, padding: 5, borderRadius: 5, marginVertical: 20 }}>Ver lecciones</ThemeButton>
+                <ThemeButton onPress={() => verLeccion(item.id.toString())} style={{ backgroundColor: primary, borderColor: primary, borderWidth: 1, padding: 5, borderRadius: 5, marginVertical: 20, alignItems: 'center' }}>Ver lecciones</ThemeButton>
             </ThemedView>
         </ScrollView>
     )
@@ -29,4 +28,3 @@ const AsignaturaCard = ({ item, verLeccion }: Props) => {
 
 export default AsignaturaCard
 
-const styles = StyleSheet.create({})

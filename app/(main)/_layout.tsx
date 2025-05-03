@@ -1,10 +1,9 @@
-import { StyleSheet, Text, View } from 'react-native'
-import React, { useEffect } from 'react'
-import { Redirect, Stack } from 'expo-router'
-import { useAuthStore } from '@/store/useAuthStore'
+import HomeIconButton from '@/components/HomeIconButton'
 import Indicador from '@/components/Indicador'
 import LogoutIconButton from '@/components/LogoutIconButton'
-import HomeIconButton from '@/components/HomeIconButton'
+import { useAuthStore } from '@/store/useAuthStore'
+import { Redirect, Stack } from 'expo-router'
+import React, { useEffect } from 'react'
 
 const MainLayout=() => {
 
@@ -13,6 +12,7 @@ const MainLayout=() => {
     useEffect(() => { //
         checkStatus()
 
+        // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [])
 
     console.log(status)
@@ -26,19 +26,15 @@ const MainLayout=() => {
         return <Redirect href={'/auth/login'} />
     }
     return (
-        <Stack>
+        <Stack screenOptions={{ headerShown: false }}>
             <Stack.Screen name='(aulas)'
-                options={{ title: 'Proyecto Aula ', headerTitleAlign: 'center', headerLeft: () => <LogoutIconButton />, headerRight: () => <HomeIconButton /> }
+                options={{ title: 'Proyecto Aula ', headerTitleAlign: 'center', headerLeft: () => <LogoutIconButton />, headerRight: () => <HomeIconButton />, headerShown: false }
                 }
             />
-            <Stack.Screen name='(evaluaciones)'
-                options={{ title: 'Proyecto Aula ', headerTitleAlign: 'center', headerLeft: () => <LogoutIconButton />, headerRight: () => <HomeIconButton /> }
-                }
-            />
+
         </Stack>
     )
 }
 
 export default MainLayout
 
-const styles=StyleSheet.create({})

@@ -1,20 +1,25 @@
-import { StyleSheet, Text, View } from 'react-native'
-import React, { useEffect, useState } from 'react'
-import { Slot, Stack } from 'expo-router'
-import axios from 'axios'
-import { Aula } from '@/interfaces/interfaces'
-import { getAsignaturasDeEstudiantePorAulas } from '@/actions/aula-actions'
-import { useAuthStore } from '@/store/useAuthStore'
+import BackIconButton from '@/components/BackIconButton'
+import HomeIconButton from '@/components/HomeIconButton'
 import LogoutIconButton from '@/components/LogoutIconButton'
+import { Stack } from 'expo-router'
+import React, { Component } from 'react'
 
-const AulaAppLayout=() => {
+export class AulasLayout extends Component {
+    render() {
+        return (
+            <Stack>
+                <Stack.Screen name="index" options={{ title: 'Asignaturas', headerTitleAlign: 'center', headerLeft: () => <LogoutIconButton />, headerRight: () => <HomeIconButton />, headerShown: true }
+                } />
+                <Stack.Screen name="asignatura" options={{ title: 'Asignatura', headerTitleAlign: 'center', headerLeft: () => <BackIconButton />, headerRight: () => <HomeIconButton />, headerShown: true }
+                } />
+                <Stack.Screen name="evaluaciones" options={{ title: 'Evaluaciones', headerTitleAlign: 'center', headerLeft: () => <BackIconButton />, headerRight: () => <HomeIconButton />, headerShown: true }
+                } />
 
-
-    return (
-        <Slot />
-    )
+                <Stack.Screen name="lecciones" options={{ title: 'Lecciones', headerTitleAlign: 'center', headerLeft: () => <BackIconButton />, headerRight: () => <HomeIconButton />, headerShown: true }
+                } />
+            </Stack>
+        )
+    }
 }
 
-export default AulaAppLayout
-
-const styles=StyleSheet.create({})
+export default AulasLayout

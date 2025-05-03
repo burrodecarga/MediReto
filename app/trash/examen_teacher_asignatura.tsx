@@ -55,7 +55,7 @@ const ExamenScreen=() => {
     return (
         <SafeAreaView style={{ flex: 1, marginTop: 0.05*height }}>
             <ThemedView >
-                <Stack.Screen options={{ headerShown: true }} />
+                <Stack.Screen options={{ headerShown: false }} />
                 <ThemedView>
                     <ThemedText type='subtitle' style={{ textAlign: 'center', marginVertical: 10 }}>EVALUACIÓN </ThemedText>
                 </ThemedView>
