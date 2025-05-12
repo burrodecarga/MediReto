@@ -1,7 +1,6 @@
 import { getAsignaturasDeEstudiantePorAulas } from '@/actions/aula-actions'
 import CardAula from '@/components/Aula'
 import Indicador from '@/components/Indicador'
-import ThemeButton from '@/components/ThemeButton'
 import { ThemedText } from '@/components/ThemedText'
 import { ThemedView } from '@/components/ThemedView'
 import { Aula } from '@/interfaces/interfaces'
@@ -52,13 +51,6 @@ const HomeScreenAula=() => {
                 renderItem={({ item }) => <CardAula aula={item} ingresar={ingresar} evaluacion={evaluacion} />
                 }
             />
-
-            <ThemedView style={{ marginBottom: 30 }}>
-
-                <ThemeButton onPress={() => router.push('/(main)/(aulas)/config')}>configurar</ThemeButton>
-
-            </ThemedView>
-
         </ThemedView>
 
     )

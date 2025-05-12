@@ -10,6 +10,7 @@ export class SecureStorageAdapter {
             await SecureStore.setItemAsync(key, value)
 
         } catch (error) {
+            console.log(error)
             Alert.alert('error al salvar datos')
         }
     }
@@ -19,6 +20,7 @@ export class SecureStorageAdapter {
         try {
             return await SecureStore.getItemAsync(key)
         } catch (error) {
+            console.log(error)
             Alert.alert('error al obtener datos')
             return null
 
@@ -29,6 +31,7 @@ export class SecureStorageAdapter {
         try {
             await SecureStore.deleteItemAsync(key)
         } catch (error) {
+            console.log(error)
             Alert.alert('error al borrar datos')
         }
     }
@@ -37,6 +40,7 @@ export class SecureStorageAdapter {
         try {
             await SecureStore.deleteItemAsync(key)
         } catch (error) {
+            console.log(error)
             Alert.alert('error al borrar datos')
         }
     }

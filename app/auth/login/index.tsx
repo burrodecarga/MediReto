@@ -1,8 +1,9 @@
-import ThemeButton from '@/components/ThemeButton'
+import ThemedButton from '@/components/ThemedButton'
 import { ThemedText } from '@/components/ThemedText'
 import { ThemedView } from '@/components/ThemedView'
 import ThemeLink from '@/components/ThemeLink'
 import ThemeTextInput from '@/components/ThemeTextInput'
+import { useThemeColor } from '@/hooks/useThemeColor'
 import { useAuthStore } from '@/store/useAuthStore'
 import { router } from 'expo-router'
 import React, { useState } from 'react'
@@ -14,10 +15,12 @@ const LoginScreen=() => {
     const [isPosting, setIsPosting]=useState(false)
     const [form, setForm]=useState({
         email: 'es@gmail.com',
-        password: 'password'
+        password: '123'
     })
 
     const { login }=useAuthStore()
+
+    const primary=useThemeColor({}, 'primary')
 
     const onLogin=async () => {
         const { email, password }=form
@@ -46,9 +49,10 @@ const LoginScreen=() => {
             behavior='padding'
             style={{ flex: 1 }}>
             <ScrollView style={{ paddingHorizontal: 40 }}>
-                <View style={{ paddingTop: height*0.35 }}>
+                <View style={{ paddingTop: height*0.15 }}>
 
-                    <ThemedText type='title'>Ingresar</ThemedText>
+                    <ThemedText type='title' style={{ borderWidth: 1, padding: 10, borderColor: primary, textAlign: 'center', marginBottom: 30, color: primary }}>MEDIRETO</ThemedText>
+                    <ThemedText type='title' style={{ color: primary }}>Ingresar</ThemedText>
                     <ThemedText style={{ color: 'gray' }}>Por favor ingrese sus datos para continuar</ThemedText>
                 </View>
                 <View style={{ marginTop: 20 }} />
@@ -64,13 +68,13 @@ const LoginScreen=() => {
                 <ThemeTextInput
                     placeholder='contraseña'
                     autoCapitalize='none'
-                    secureTextEntry
+                    //secureTextEntry
                     icon='lock-closed-outline'
                     value={form.password}
                     onChangeText={(value) => setForm({ ...form, password: value })}
                 />
                 <View style={{ marginTop: 10 }} />
-                <ThemeButton icon='arrow-forward-outline' onPress={onLogin} style={{ backgroundColor: isPosting? 'red':'blue' }} disabled={isPosting}>Ingresar</ThemeButton>
+                <ThemedButton icon='arrow-forward-outline' onPress={onLogin} style={{ backgroundColor: isPosting? 'green':primary, flexDirection: 'row', padding: 10, borderRadius: 5, justifyContent: 'center' }} disabled={isPosting}>Ingresar</ThemedButton>
 
                 <View style={{ marginTop: 20 }}>
                     <View style={{ flexDirection: 'row', alignItems: 'center', justifyContent: 'center' }}>
@@ -80,11 +84,15 @@ const LoginScreen=() => {
                         </ThemeLink>
                     </View>
                 </View>
-                <ThemedView style={{ marginBottom: 30 }}>
+                <ThemedView style={{ marginVertical: 100 }}>
 
-                    <ThemeButton onPress={() => router.push('/auth/config')}>configurar</ThemeButton>
+                    <ThemedButton icon='cog' onPress={() => router.push('/auth/config')} style={{ backgroundColor: primary, flexDirection: 'row', padding: 10, borderRadius: 5, justifyContent: 'center' }} >Configurar</ThemedButton>
+
 
                 </ThemedView>
+                <ThemedText style={{ fontSize: 11, color: primary }}>Basado en Idea de: Dr. Abrahan Jimenez</ThemedText>
+
+                <ThemedText style={{ fontSize: 11, color: primary, marginBottom: 10 }}>Desarrollo: Edwin Henriquez, edwinhenriquezh@gmail.com</ThemedText>
             </ScrollView>
         </KeyboardAvoidingView>
     )

@@ -56,7 +56,7 @@ const EvaluacionesScreen=() => {
                 <ThemeButton
                     onPress={() =>
                         router.push({
-                            pathname: "/(main)/(evaluacion)/examen_teacher_formulario",
+                            pathname: "/(main)/(trash)/(evaluacion)/examen_teacher_formulario",
                             params: { asignatura_id, teacher_id }
                         })
                     }

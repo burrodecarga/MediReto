@@ -1,8 +1,9 @@
 import { Proto, Resp } from "@/interfaces/interfaces"
 import { useRespuestasStore } from "@/store/useRespuestasStore"
 import React, { useEffect, useState } from "react"
-import { Dimensions, StyleSheet, TouchableOpacity, View } from "react-native"
+import { StyleSheet, TouchableOpacity, View } from "react-native"
 import { ThemedText } from "./ThemedText"
+import { ThemedView } from "./ThemedView"
 
 
 
@@ -16,7 +17,7 @@ const BlockForm=({ item, index }: Props) => {
 
   const [isActive, setIsActive]=useState(0)
 
-  const height=Dimensions.get('window').height
+  //const height=Dimensions.get('window').height
 
   const { respuestas, setRespuesta, resetRespuesta }=useRespuestasStore()
 
@@ -41,16 +42,17 @@ const BlockForm=({ item, index }: Props) => {
   }
 
   useEffect(() => {
-    respuestas.map(r => r.respuesta===item.option_id&&setIsActive(item.option_id))
-  })
-  console.log(respuestas, respuestas.length, isActive)
+    respuestas.map(r => r.respuesta===item.seleccted&&setIsActive(item.seleccted))
+  }, [item, respuestas])
+
+  //console.log(respuestas, respuestas.length, isActive)
 
   return (
-    <View style={styles.container}>
-      <ThemedText style={{ fontWeight: '700', fontSize: 15, backgroundColor: '#dcdcdc', height: 'auto', paddingHorizontal: 6, paddingVertical: 10, textAlign: 'justify', }}>
+    <ThemedView style={styles.container}>
+      <ThemedText style={{ fontWeight: '700', fontSize: 15, backgroundColor: '#dcdcdc', height: 'auto', paddingHorizontal: 6, paddingVertical: 10, textAlign: 'justify' }}>
         {(index+1)+'.-'}{item.question}
       </ThemedText>
-      <View style={{ marginHorizontal: 1, padding: 0, marginVertical: 10, height: height*0.6 }}>
+      <View style={{ marginHorizontal: 1, padding: 0, marginVertical: 10, height: 'auto' }}>
         <TouchableOpacity onPress={() => handleRespuesta(item.option_0_value, 0)} style={[styles.button, isActive===item.option_0_value? styles.select:null]} >
           <ThemedText style={{ fontSize: 13, }}>{item.option_0}</ThemedText>
         </TouchableOpacity>
@@ -66,9 +68,10 @@ const BlockForm=({ item, index }: Props) => {
         {item.option_4!.length>10&&<TouchableOpacity onPress={() => handleRespuesta(item.option_4_value!, 0)} style={[styles.button, isActive===item.option_4_value? styles.select:null]} >
           <ThemedText style={{ fontSize: 13, }}>{item.option_4}</ThemedText>
         </TouchableOpacity>}
+
+        <TouchableOpacity style={styles.reset} onPress={() => handleRespuesta(item.question_id, 1)}><ThemedText style={{ textAlign: 'center' }}>Limpiar Selección</ThemedText></TouchableOpacity>
       </View>
-      <TouchableOpacity style={styles.reset} onPress={() => handleRespuesta(item.question_id, 1)}><ThemedText style={{ textAlign: 'center' }}>Reset</ThemedText></TouchableOpacity>
-    </View>
+    </ThemedView>
   )
 }
 
@@ -76,9 +79,10 @@ export default BlockForm
 
 const styles=StyleSheet.create({
   container: {
-    padding: 10,
+    padding: 4,
     marginHorizontal: 10,
-    borderColor: '#a9a9a9', borderWidth: 1, marginBottom: 10
+    // borderColor: '#a9a9a9', borderWidth: 1,
+    marginBottom: 25
   },
 
   button: {
@@ -87,7 +91,7 @@ const styles=StyleSheet.create({
     borderWidth: 1,
     borderColor: "grey",
     paddingHorizontal: 0,
-    paddingVertical: 5,
+    paddingVertical: 12,
     marginBottom: 10,
     backgroundColor: "white",
     height: 'auto',
@@ -95,18 +99,20 @@ const styles=StyleSheet.create({
     justifyContent: 'center'
   },
   select: {
-    backgroundColor: 'aqua'
+    backgroundColor: '#56e778'
   },
   reset: {
-    marginHorizontal: 10,
+    marginHorizontal: 0,
     paddingHorizontal: 10,
-    paddingVertical: 5,
-    backgroundColor: '#dcdcdc',
-    marginBottom: 18,
-    borderRadius: 9
+    paddingVertical: 10,
+    backgroundColor: 'white',
+    marginBottom: 'auto',
+    borderRadius: 2,
+    borderWidth: 1,
+    borderColor: "#a9a9a9"
   },
   textReset: {
-    backgroundColor: '#dcdcdc'
+    color: '#f4fcff'
   }
 
 

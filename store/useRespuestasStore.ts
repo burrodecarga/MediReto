@@ -7,6 +7,7 @@ export type RespState={
     setRespuesta: (respuesta: Resp) => any
     delRespuesta: (id: number) => any
     resetRespuesta: (id: number) => any
+    resetRespuestas: () => any
 }
 
 export const useRespuestasStore=create<RespState>()((set, get) => ({
@@ -22,5 +23,9 @@ export const useRespuestasStore=create<RespState>()((set, get) => ({
 
     resetRespuesta: (id) => {
         set((state) => ({ respuestas: state.respuestas.filter(r => r.pregunta!==id) }))
+    },
+
+    resetRespuestas: () => {
+        set((state) => ({ respuestas: state.respuestas.filter(r => r.pregunta===-1) }))
     }
 }))

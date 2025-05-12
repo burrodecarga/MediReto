@@ -1,3 +1,4 @@
+import { RegisterResponse } from "@/actions/auth-actions"
 import { AuthStatus } from "./types/types"
 
 export interface AuthState {
@@ -6,6 +7,7 @@ export interface AuthState {
     user?: User
 
     login: (email: string, password: string) => Promise<boolean>
+    register: (name: string, last_name: string, cedula: string, phone: string, email: string, password: string) => Promise<RegisterResponse|null>
     checkStatus: () => Promise<void>
     logout: () => Promise<void>
 

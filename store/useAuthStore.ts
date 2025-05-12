@@ -1,14 +1,15 @@
-import { AuthState, User } from '@/interfaces/interfaces'
+import { authLogin, authRegister, User } from '@/actions/auth-actions'
+import { AuthState } from '@/interfaces/interfaces'
 import { create } from 'zustand'
-import { SecureStorageAdapter } from './secure-storage'
-import { authLogin } from '@/actions/auth-actions'
-import { delDataObj, getDataObj, storeDataObj } from './async-storage'
+import { delDataObj } from '../trash/async-storage'
+import { SecureStorageAdapter } from '../trash/secure-storage'
+import { getDataObj, storeDataObj } from './async-storage'
 
 
 
 
 
-export const useAuthStore = create<AuthState>()((set, get) => ({
+export const useAuthStore=create<AuthState>()((set, get) => ({
     // Properties
     status: 'checking',
     token: undefined,
@@ -16,7 +17,7 @@ export const useAuthStore = create<AuthState>()((set, get) => ({
 
     // Actions
     changeStatus: async (token?: string, user?: User) => {
-        if (!token || !user) {
+        if (!token||!user) {
             set({ status: 'unauthenticated', token: undefined, user: undefined })
             await SecureStorageAdapter.deleteItem('token')
             return false
@@ -35,16 +36,21 @@ export const useAuthStore = create<AuthState>()((set, get) => ({
     },
 
     login: async (email: string, password: string) => {
-        const resp = await authLogin(email, password)
+        const resp=await authLogin(email, password)
         return get().changeStatus(resp?.token, resp?.user)
     },
 
+    register: async (name: string, last_name: string, cedula: string, phone: string, email: string, password: string) => {
+        const resp=await authRegister(name, last_name, cedula, phone, email, password)
+        return resp
+    },
+
     checkStatus: async () => {
-        const token = await SecureStorageAdapter.getItem('token')
-        const getUser = await getDataObj('user')
+        const token=await SecureStorageAdapter.getItem('token')
+        const getUser=await getDataObj('user')
 
         //console.log('SECURE STORAGE', token, getUser)
-        const resp = {
+        const resp={
             token: token,
             user: getUser
         }

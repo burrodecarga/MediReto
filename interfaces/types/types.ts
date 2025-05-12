@@ -30,3 +30,11 @@ export type RespuestaOption={
     option: Option|undefined
 
 }
+
+
+export type ExamenForm={
+    studen_id: string
+    examen_id: string
+    preguntas: string
+    respuestas: string
+}

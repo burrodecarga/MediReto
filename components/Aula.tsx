@@ -16,6 +16,7 @@ const CardAula=({ aula, ingresar, evaluacion }: Props) => {
     const primaryColor=useThemeColor({}, 'primary')
 
 
+
     return (
         <ThemedView style={{ paddingHorizontal: 5, paddingVertical: 8, borderColor: primaryColor, marginVertical: 10, borderWidth: 1, borderRadius: 5, justifyContent: 'center', alignItems: 'center' }}>
             <ThemedText type='subtitle' style={{ textTransform: 'uppercase' }}>{aula.asignatura}</ThemedText>
